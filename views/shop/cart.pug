@@ -1,0 +1,14 @@
+extends ../layouts/main-layout.pug
+block content 
+    main 
+        if(products.length > 0)
+            ul 
+                each product of products 
+                    li 
+                        p #{product.productData.title} (#{product.quantity})
+                        form(action="/cart-delete-item",method="POST")
+                            input(type="hidden",value=product.productData.id,name="productId")
+                            button(type="submit").btn delete  
+                         
+        else 
+            h1 No products found
